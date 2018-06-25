@@ -17,6 +17,7 @@ import com.example.kikoano111.mpip.Api.GameDetail;
 import com.example.kikoano111.mpip.GameDetailsActivity;
 import com.example.kikoano111.mpip.R;
 
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class MyAdapterGameDetails extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final String INTENT_MOVIE = "POPULAR";
+    public static final String INTENT_MOVIE = "Details";
 
 
     public class MyHolder extends RecyclerView.ViewHolder {
@@ -73,6 +74,7 @@ public class MyAdapterGameDetails extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
+        Log.e("a","a");
         // Get current position of item in recyclerview to bind data and assign values from list
         MyHolder myHolder = (MyHolder) holder;
         final GameDetail current = data.get(position);
@@ -86,11 +88,17 @@ public class MyAdapterGameDetails extends RecyclerView.Adapter<RecyclerView.View
 
         if(current.getCover() != null) {
             RequestOptions options = new RequestOptions();
+            URL u =null;
+            try{
+               u = new URL(current.getCover().getUrl().replace("thumb","cover_big"));
+            }
+            catch (Exception e){
+
+            }
             options.centerCrop();
-            Log.e("aa",current.getCover().getUrl().replace("thumb","cover_big"));
             Glide.with(context)
                     .setDefaultRequestOptions(requestOptions)
-                    .load(current.getCover().getUrl().replace("thumb","cover_big"))
+                    .load(u)
                     .apply(options)
                     .into(myHolder.imagePoster);
         }
@@ -102,17 +110,16 @@ public class MyAdapterGameDetails extends RecyclerView.Adapter<RecyclerView.View
                 v.getContext().startActivity(intent);
             }
         });
-       /* holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {
                 data.remove(position);
-
                 notifyDataSetChanged();
-                MainActivity.database.movieDao().deleteById(current.getImdbID());
+                MainActivity.database.gameDao().deleteById(current.getId());
                 return false;
             }
-        });*/
+        });
 
     }
 

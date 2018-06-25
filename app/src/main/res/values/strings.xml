@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Games Database</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_game_details">GameDetailsActivity</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_game_details">Game Details</string>
 </resources>

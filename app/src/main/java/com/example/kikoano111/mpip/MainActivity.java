@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements BaseSliderView.OnSliderCli
         recyclerViewSearch = findViewById(R.id.search);
         recyclerViewPopular = findViewById(R.id.popular);
         recyclerViewTopRated = findViewById(R.id.topRated);
-        recyclerViewFavorites = findViewById(R.id.favorites);
+        recyclerViewFavorites = findViewById(R.id.myfba);
         slider = findViewById(R.id.slider);
         recyclerViewSearch.setVisibility(View.GONE);
         loadSQLData();

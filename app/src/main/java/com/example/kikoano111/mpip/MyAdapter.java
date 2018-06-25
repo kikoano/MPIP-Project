@@ -96,17 +96,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 v.getContext().startActivity(intent);
             }
         });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 
-            @Override
-            public boolean onLongClick(View v) {
-                data.remove(position);
-                Log.e("wor","w");
-                notifyDataSetChanged();
-                MainActivity.database.gameDao().deleteById(current.getId());
-                return false;
-            }
-        });
 
     }
 
